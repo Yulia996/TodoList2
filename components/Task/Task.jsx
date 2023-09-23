@@ -19,7 +19,7 @@ function Task({text, id, status, onDelete, doneTask,  editTask}){
   }
     
   return (
-    <li key={id} className={`todo ${status ? 'done':''}`}>
+    <li className={`todo ${status ? 'done':''}`}>
       {edit ? <input value={valueEdit} onChange={(e) => setValueEdit(e.target.value)}></input>: <span>{text}</span>}
       <button onClick={handleClickEdit}>редактировать</button>
       <button onClick={handleClickDone}>сделано</button>

@@ -13,7 +13,6 @@ function CreateTaskForm  ({onSubmit}) {
     } else {
       alert('Введите задачу')
     }
-    
   }
   
   return (

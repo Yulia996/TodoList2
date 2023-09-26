@@ -20,7 +20,7 @@ function Task({name, id, status, onDelete, onDone,  onEdit}){
       onEdit(id, nameFieldValue)
     }
   }
-    
+  
   return (
     <li className={`todo ${status ? 'done' : ''}`}>
       {isEditMode ? <input value={nameFieldValue} onChange={(e) => setNameFieldValue(e.target.value)}/> : <span>{name}</span>}

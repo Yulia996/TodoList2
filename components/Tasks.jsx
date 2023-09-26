@@ -2,7 +2,6 @@ import Task from './Task/Task';
 import PropTypes from 'prop-types';
 
 function Tasks ({tasks, onDelete, onDone, onEdit}){
-
   return(
     <ul>
       {tasks.map((task) => (

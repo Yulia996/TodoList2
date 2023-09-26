@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types';
 
-function Task({name, id, status, onDelete, doneTask,  editTask}){
+function Task({name, id, status, onDelete, onDone,  onEdit}){
   const [nameFieldValue, setNameFieldValue] = useState(name)
   const [isEditMode, setIsEditMode] = useState(false)
 
@@ -10,14 +10,14 @@ function Task({name, id, status, onDelete, doneTask,  editTask}){
   }
 
   const handleClickDone = () => {
-    doneTask(id)
+    onDone(id)
   }
   
   const handleClickEdit = () => {
     setIsEditMode(!isEditMode)
 
     if (isEditMode){
-      editTask(id, nameFieldValue)
+      onEdit(id, nameFieldValue)
     }
   }
     
@@ -38,6 +38,6 @@ Task.propTypes = {
   id: PropTypes.number.isRequired,
   status: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
-  doneTask: PropTypes.func.isRequired,
-  editTask: PropTypes.func.isRequired
+  onDone: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
 }

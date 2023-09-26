@@ -43,8 +43,8 @@ function App() {
       <Tasks
         tasks={tasks} 
         onDelete={deleteTask} 
-        doneTask={doneTask} 
-        editTask={editTask}
+        onDone={doneTask} 
+        onEdit={editTask}
       />
     </section>
   )    

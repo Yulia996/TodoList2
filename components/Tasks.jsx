@@ -1,7 +1,7 @@
 import Task from './Task/Task';
 import PropTypes from 'prop-types';
 
-function Tasks ({tasks, onDelete, doneTask, editTask}){
+function Tasks ({tasks, onDelete, onDone, onEdit}){
 
   return(
     <ul>
@@ -12,8 +12,8 @@ function Tasks ({tasks, onDelete, doneTask, editTask}){
           id={task.id}
           status={task.status}
           onDelete={onDelete}
-          doneTask={doneTask}
-          editTask={editTask}
+          onDone={onDone}
+          onEdit={onEdit}
         />  
       ))}
     </ul>
@@ -23,9 +23,13 @@ function Tasks ({tasks, onDelete, doneTask, editTask}){
 export default Tasks;
 
 Tasks.propTypes = {
-  tasks: PropTypes.array.isRequired, 
+  tasks: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    status: PropTypes.bool.isRequired
+  })),
   onDelete: PropTypes.func.isRequired, 
-  doneTask: PropTypes.func.isRequired, 
-  editTask: PropTypes.func.isRequired
+  onDone: PropTypes.func.isRequired, 
+  onEdit: PropTypes.func.isRequired
 }
     

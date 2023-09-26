@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types';
 
-function Task({text, id, status, onDelete, doneTask,  editTask}){
+function Task({name, id, status, onDelete, doneTask,  editTask}){
+  const [nameFieldValue, setNameFieldValue] = useState(name)
+  const [isEditMode, setIsEditMode] = useState(false)
 
-  const [valueEdit, setValueEdit] = useState(text)
-  const [edit, setEdit] = useState(false)
-
-  const handleClickDel= () => {
+  const handleClickDelete = () => {
     onDelete(id)
   }
 
@@ -14,18 +14,30 @@ function Task({text, id, status, onDelete, doneTask,  editTask}){
   }
   
   const handleClickEdit = () => {
-    editTask(id, valueEdit)
-    setEdit(!edit)
+    setIsEditMode(!isEditMode)
+
+    if (isEditMode){
+      editTask(id, nameFieldValue)
+    }
   }
     
   return (
-    <li className={`todo ${status ? 'done':''}`}>
-      {edit ? <input value={valueEdit} onChange={(e) => setValueEdit(e.target.value)}></input>: <span>{text}</span>}
+    <li className={`todo ${status ? 'done' : ''}`}>
+      {isEditMode ? <input value={nameFieldValue} onChange={(e) => setNameFieldValue(e.target.value)}/> : <span>{name}</span>}
       <button onClick={handleClickEdit}>редактировать</button>
       <button onClick={handleClickDone}>сделано</button>
-      <button onClick={handleClickDel}>удалить</button>
+      <button onClick={handleClickDelete}>удалить</button>
     </li>
   )
 }  
 
 export default Task;
+
+Task.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  status: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  doneTask: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired
+}

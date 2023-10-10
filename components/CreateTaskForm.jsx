@@ -1,14 +1,14 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
+import { addTask } from "../store/todoSlice";
 
-function CreateTaskForm  ({onSubmit}) {
+function CreateTaskForm() {
   const [value, setValue] = useState('');
-  const [id, setId] = useState(1);
+  const dispatch = useDispatch();
 
   const handleAddTask = () => {
     if(value != ''){
-      setId(i => i+1);
-      onSubmit({title: value, id: id, status: false});
+      dispatch(addTask({value}))
       setValue('')
     } else {
       alert('Введите задачу')
@@ -24,7 +24,3 @@ function CreateTaskForm  ({onSubmit}) {
 }
 
 export default CreateTaskForm;
-
-CreateTaskForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-}

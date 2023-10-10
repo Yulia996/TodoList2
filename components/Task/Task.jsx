@@ -1,23 +1,26 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { deleteTask, doneTask, editTask } from '../../store/todoSlice';
 import PropTypes from 'prop-types';
 
-function Task({name, id, status, onDelete, onDone,  onEdit}){
-  const [nameFieldValue, setNameFieldValue] = useState(name)
-  const [isEditMode, setIsEditMode] = useState(false)
+function Task({name, id, status}) {
+  const [nameFieldValue, setNameFieldValue] = useState(name);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClickDelete = () => {
-    onDelete(id)
+    dispatch(deleteTask({id}))
   }
 
   const handleClickDone = () => {
-    onDone(id)
+    dispatch(doneTask({id}))
   }
   
   const handleClickEdit = () => {
     setIsEditMode(!isEditMode)
 
     if (isEditMode){
-      onEdit(id, nameFieldValue)
+      dispatch(editTask({id, nameFieldValue}))
     }
   }
   
@@ -36,8 +39,5 @@ export default Task;
 Task.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  status: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onDone: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired
+  status: PropTypes.bool.isRequired
 }

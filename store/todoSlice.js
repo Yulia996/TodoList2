@@ -8,7 +8,7 @@ const todoSlice = createSlice({
     reducers: {
         addTask(state, action) {
             state.todos.push({
-                title: action.payload.value, id: new Date().toISOString(), status: false
+                title: action.payload.value, id: action.payload.id, status: false
             });
         },
         deleteTask(state, action) {

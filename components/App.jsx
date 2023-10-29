@@ -1,11 +1,15 @@
-import CreateTaskForm   from './CreateTaskForm'
-import Tasks from './Tasks';
+import Todos from './TodoList/indexTodos';
+import TaskPage from '././TaskPage/TaskPage';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <section>
-      <CreateTaskForm />
-      <Tasks />
+      <Routes>
+        <Route path='/' element={<Todos/>}/>
+        <Route path='description' element={<TaskPage/>}/>
+      </Routes>
+     
     </section>
   )    
 }

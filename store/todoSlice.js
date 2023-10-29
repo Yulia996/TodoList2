@@ -8,7 +8,7 @@ const todoSlice = createSlice({
     reducers: {
         addTask(state, action) {
             state.todos.push({
-                title: action.payload.value, id: action.payload.id, status: false
+                title: action.payload.value, id: action.payload.id, status: false, description: action.payload.description
             });
         },
         deleteTask(state, action) {
@@ -21,9 +21,13 @@ const todoSlice = createSlice({
         editTask(state, action){
             const editTodo = state.todos.find((todo) => todo.id === action.payload.id)
             editTodo.title = action.payload.nameFieldValue;
+        },
+        editDescription(state, action){
+            const editTodo = state.todos.find((todo) => todo.id === action.payload.id)
+            editTodo.description = action.payload.descriptionFieldValue;
         }
     }
 });
 
-export const {addTask, deleteTask, doneTask, editTask} = todoSlice.actions;
+export const {addTask, deleteTask, doneTask, editTask, editDescription} = todoSlice.actions;
 export default todoSlice.reducer;

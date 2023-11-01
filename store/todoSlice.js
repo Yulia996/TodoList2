@@ -21,6 +21,7 @@ const todoSlice = createSlice({
         editTask(state, action){
             const editTodo = state.todos.find((todo) => todo.id === action.payload.id)
             editTodo.title = action.payload.nameFieldValue;
+
         },
         editDescription(state, action){
             const editTodo = state.todos.find((todo) => todo.id === action.payload.id)

@@ -17,7 +17,7 @@ function Task({name, id, status}) {
   
   return (
     <li className={`todo ${status ? 'done' : ''}`}>
-      <Link to="description">{name}</Link>
+      <Link to={`description/${id}`}>{name}</Link>
       <button onClick={handleClickDone}>сделано</button>
       <button onClick={handleClickDelete}>удалить</button>
     </li>

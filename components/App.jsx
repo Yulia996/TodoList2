@@ -1,16 +1,13 @@
-import Todos from './TodoList/indexTodos';
+import Todos from './TodoList/TodoList';
 import { Routes, Route } from 'react-router-dom';
-import TaskPage from './TaskPage/TaskPage';
+import TodoDetail from './TaskPage/TodoDetail';
 
 function App() {
   return (
-    <section>
-      <Routes>
-        <Route path='/' element={<Todos/>}/>
-        <Route path='description/:index' element={<TaskPage/>}/>
-      </Routes>
-     
-    </section>
+    <Routes>
+      <Route path='/' element={<Todos/>}/>
+      <Route path='description/:taskId' element={<TodoDetail/>}/>
+    </Routes>  
   )    
 }
 
